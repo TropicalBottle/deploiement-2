@@ -1,7 +1,8 @@
 import {fireEvent, render, screen} from '@testing-library/react';
+import Counter from "./Counter";
 
 test('Counter increments and decrements when the buttons are clicked', () => {
-    render(<App />);
+    render(<Counter />);
     const button = screen.getByRole('button');
     const count = screen.getByTestId('count');
     expect(button).toBeInTheDocument();
