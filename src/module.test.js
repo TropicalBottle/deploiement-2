@@ -1,10 +1,11 @@
-import { calculateAge } from "./module"
+import { calculateAge, isValidFrenchPostalCode } from "./module"
 let people20years;
 beforeEach(() => {
     let date = new Date();
     people20years = {
         birth: new Date(date.setFullYear(date.getFullYear() - 20))
     };
+    const postal_code = "34500";
 })
 /**
  * @function calculateAge
@@ -28,5 +29,9 @@ describe('calculateAge Unit Test Suites', () => {
 
     it('should be a date', () => {
         expect(people20years.birth).toEqual(expect.any(Date))
+    });
+
+    it('should be a valid french postal code', () => {
+        
     });
 })
