@@ -29,14 +29,4 @@ function calculateAgeStatic(date) {
     return age;
 }
 
-/**
- * Verify is postal code is french
- * @param postalCode
- * @returns {boolean}
- */
-function isValidFrenchPostalCode(postalCode) {
-    const regex = /^\d{5}$/;
-    return regex.test(postalCode);
-}
-
-export {calculateAge, calculateAgeStatic, isValidFrenchPostalCode}
+export { calculateAge, calculateAgeStatic }
