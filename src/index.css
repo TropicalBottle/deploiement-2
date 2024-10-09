@@ -18,7 +18,7 @@ code {
 
 @layer components {
   .alert {
-    @apply p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-100 mt-4
+    @apply mb-4 text-sm text-red-800 text-left mt-2
   }
 
   .form_label {
