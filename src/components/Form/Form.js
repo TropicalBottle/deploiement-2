@@ -1,52 +1,97 @@
-import {calculateAge, calculateAgeStatic, isValidFrenchPostalCode} from "../../module";
+import { useState } from "react";
+import { isValidName, isValidFrenchPostalCode, areAllFieldsFilled, validateAge } from './form_checker';
 
 export default function Form() {
+    const [formData, setFormData] = useState({
+        first_name: 'Alexandre',
+        last_name: 'Blanquero',
+        email: 'mail@mail.mail',
+        date: '',
+        city: 'Montpellier',
+        postal: '34500'
+    });
+    const [isButtonAvailable, setButtonAvailable] = useState(false)
+    const [errors, setErrors] = useState({});
 
     function search(event) {
         event.preventDefault();
         const formData = new FormData(event.target);
-        if (!formData.get("first_name") || !formData.get("last_name") || !formData.get("mail")) {
-            alert("Please verify first name or last name");
+        let newErrors = {};
+
+        if (!isValidName(formData.get('first_name'))) {
+            newErrors["first_name"] = "Please verify your first name";
         }
-        if (calculateAgeStatic(formData.get('date')) < 18) {
-            alert("You are not of age");
+        if (!isValidName(formData.get('last_name'))) {
+            newErrors["last_name"] = "Please verify your last name";
+        }
+        if (validateAge(formData.get('date')) < 18) {
+            newErrors["date"] = "Please verify the birthday date";
         }
         if (!isValidFrenchPostalCode(formData.get("postal"))) {
-            alert("Please enter a french postal code");
+            newErrors["postal"] = "Please verify your postal code";
         }
-        alert("Everything is going fine");
+
+        setErrors(newErrors);
+
+        if (Object.keys(newErrors).length === 0) {
+            alert("Everything is going fine");
+        }
+
+        console.log(formData);
+    }
+
+    function manage_button_state(event) {
+        const { name, value } = event.target;
+        setFormData((prevFormData) => ({
+            ...prevFormData,
+            [name]: value,
+        }));
+
+        setButtonAvailable(areAllFieldsFilled(formData));
     }
 
     return (
-        <div className={"bg-cyan-700 px-4 py-2 rounded"}>
+        <div className={"bg-gray-100 w-3/4 px-4 py-2 my-8 rounded-lg text-black"}>
             <h1 className={"text-6xl mb-8"}>Register</h1>
             <form onSubmit={search}>
-                <div className={"my-4"}>
-                    <label htmlFor={"first_name"}>First name:</label>
-                    <input className={"text-black"} type={"text"} name="first_name" placeholder={"Max"}/>
+                <div className={"flex flex-row justify-center"}>
+                    <div className={ 'my-4 mr-4 w-full' }>
+                        <label className={ 'form_label' } htmlFor={ 'first_name' }>First name:</label>
+                        <input className={ 'form_input' } type={ 'text' } name="first_name" placeholder={ 'Max' }
+                               onChange={ manage_button_state } value={ formData.first_name }/>
+                        { errors.first_name && <div className={ 'alert' }>Please verify your first name</div> }
+                    </div>
+                    <div className={ 'my-4 ml-4 w-full' }>
+                        <label className={ 'form_label' } htmlFor={ 'last_name' }>Last name:</label>
+                        <input className={ 'form_input' } type={ 'text' } name="last_name" placeholder={ 'Smith' }
+                               onChange={ manage_button_state } value={ formData.last_name }/>
+                        { errors.last_name && <div className={ 'alert' }>Please verify your last name</div> }
+                    </div>
+                </div>
+                <div className={ 'my-4 block' }>
+                    <label className={ 'form_label' } htmlFor={ 'email' }>Mail:</label>
+                    <input className={ 'form_input' } type={ 'email' } name="email" placeholder={ 'mail@mail.com' }
+                           onChange={ manage_button_state } value={ formData.email }/>
+                    { errors.email && <div className={ 'alert' }>Please verify your mail</div> }
+                </div>
+                <div className={ 'my-4' }>
+                    <label className={ 'form_label' } htmlFor={ 'date' }>Birthday:</label>
+                    <input className={ 'form_input' } type={ 'date' } name="date" onChange={ manage_button_state }
+                           value={ formData.date }/>
+                    { errors.date && <div className={ 'alert' }>Please verify your date</div> }
+                </div>
+                <div className={ 'my-4' }>
+                <label className={"form_label"} htmlFor={"city"}>City:</label>
+                    <input className={"form_input"} type={"text"} name="city" placeholder={"Montpellier"} onChange={manage_button_state} value={formData.city}/>
+                    {errors.city && <div className={"alert"}>Please verify your city</div>}
                 </div>
                 <div className={"my-4"}>
-                    <label htmlFor={"last_name"}>Last name:</label>
-                    <input className={"text-black"} type={"text"} name="last_name" placeholder={"Smith"}/>
-                </div>
-                <div className={"my-4"}>
-                    <label htmlFor={"mail"}>Mail:</label>
-                    <input className={"text-black"} type={"email"} name="mail" placeholder={"mail@mail.com"}/>
-                </div>
-                <div className={"my-4"}>
-                    <label htmlFor={"date"}>Birthday:</label>
-                    <input className={"text-black"} type={"date"} name="date"/>
-                </div>
-                <div className={"my-4"}>
-                    <label htmlFor={"city"}>City:</label>
-                    <input className={"text-black"} type={"text"} name="city" placeholder={"Montpellier"}/>
-                </div>
-                <div className={"my-4"}>
-                    <label htmlFor={"postal"}>Postal code:</label>
-                    <input className={"text-black"} type={"text"} name="postal" placeholder={"34500"}/>
+                    <label className={"form_label"} htmlFor={"postal"}>Postal code:</label>
+                    <input className={"form_input"} type={"text"} name="postal" placeholder={"34500"} onChange={manage_button_state} value={formData.postal}/>
+                    {errors.postal && <div className={"alert"}>Please verify your postal code</div>}
                 </div>
 
-                <button disabled className={"bg-green-500 mt-8 px-4 rounded disabled:cursor-not-allowed disabled:bg-gray-300 disabled:text-gray-500"} type="submit">Submit</button>
+                <button disabled={!isButtonAvailable} className={"text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 disabled:cursor-not-allowed disabled:bg-gray-300 disabled:text-gray-500"} type="submit">Submit</button>
             </form>
         </div>
     )
