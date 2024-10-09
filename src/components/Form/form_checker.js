@@ -25,12 +25,12 @@ export function isValidName(name) {
 /**
  * Calculate a person's age in years.
  *
- * @param {object} p An object representing a person, implementing a birth Date parameter.
- * @return {number} The age in years of p.
+ * @param {object|Date} An object representing a person, implementing a birth Date parameter.
+ * @return {number|false} The age in years of p.
  */
 export function validateAge(date) {
     if(!date) {
-        throw new Error("missing param p")
+        return false;
     }
     date = new Date(date);
     let dateDiff = new Date(Date.now() - date)
