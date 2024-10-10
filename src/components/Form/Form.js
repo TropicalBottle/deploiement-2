@@ -14,7 +14,7 @@ export default function Form() {
     const [formData, setFormData] = useState(initialState);
     const [isButtonAvailable, setButtonAvailable] = useState(false)
     const [errors, setErrors] = useState({});
-    const [isSuccessful, setSuccessful] = useState(true);
+    const [isSuccessful, setSuccessful] = useState(false);
 
     function search(event) {
         event.preventDefault();
