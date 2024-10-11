@@ -1,4 +1,4 @@
-
+[![codecov](https://codecov.io/github/TropicalBottle/deploiement-2/graph/badge.svg?token=BN1RHTW9E7)](https://codecov.io/github/TropicalBottle/deploiement-2)
 # Class project
 
 This project has for goal to deploy a React project on Github Pages, to learn about testing and external coverage (with codecov).
