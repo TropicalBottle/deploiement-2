@@ -1,4 +1,4 @@
-import { calculateAge, isValidFrenchPostalCode } from "./module"
+import { calculateAge } from "./module"
 let people20years;
 beforeEach(() => {
     let date = new Date();
@@ -29,9 +29,5 @@ describe('calculateAge Unit Test Suites', () => {
 
     it('should be a date', () => {
         expect(people20years.birth).toEqual(expect.any(Date))
-    });
-
-    it('should be a valid french postal code', () => {
-        
     });
 })
