@@ -25,7 +25,7 @@ jobs:
       - name: ci & test
         run: |
           npm ci
-          npm test
+          npm test --coverage
 
       - name: Build & doc
         run: |
