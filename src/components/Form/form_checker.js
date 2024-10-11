@@ -35,7 +35,7 @@ export function validateAge(date) {
     date = new Date(date);
     let dateDiff = new Date(Date.now() - date)
     let age = Math.abs(dateDiff.getUTCFullYear() - 1970);
-    return age;
+    return age >= 18 ? true : false;
 }
 
 /**
@@ -45,7 +45,7 @@ export function validateAge(date) {
  * @returns {boolean}
  */
 export function isValidEmail(email) {
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     return emailPattern.test(email);
 }
 
