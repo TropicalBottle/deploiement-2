@@ -28,6 +28,11 @@ jobs:
           npm test
           npx jest --coverage
 
+      - name: codecov
+        uses: codecov/codecov-action@v3
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+
       - name: Build & doc
         run: |
           npm run jsdoc
