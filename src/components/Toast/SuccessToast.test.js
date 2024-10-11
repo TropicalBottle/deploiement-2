@@ -1,3 +1,4 @@
+import '@testing-library/jest-dom';
 import SuccessToast from './SuccessToast';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { useState } from 'react';
