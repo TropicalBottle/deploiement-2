@@ -59,6 +59,8 @@ export default function Form() {
             [name]: value,
         }));
 
+        // Test codecov
+
         setButtonAvailable(areAllFieldsFilled(formData));
     }
 
