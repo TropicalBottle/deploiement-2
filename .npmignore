@@ -1,0 +1,33 @@
+# Dependency directories
+node_modules
+/.pnp
+.pnp.js
+
+# Testing and code coverage
+coverage
+__tests__
+__mocks__
+
+# Configuration files
+.vscode
+.idea
+.eslintcache
+
+# Local environment and temporary files
+.DS_Store
+.env*
+*.log
+
+# Build directories
+build
+dist
+
+# Source files (if publishing only the build output)
+src
+
+# Other files to ignore
+README.md
+*.config.js
+*.config.cjs
+package-lock.json
+yarn.lock
