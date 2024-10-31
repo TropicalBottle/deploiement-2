@@ -46,7 +46,17 @@ jobs:
         with:
           path: build
           if-no-files-found: error
-
+      - name: Authenticate with npm
+        run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
+      - name: build and publish package on NPM 📦
+        run: |
+          git config --global user.email "alexandre.blanquero00@gmail.com"
+          git config --global user.name "TropicalBottle"
+          npm run build-npm
+          npm version patch
+          npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
   deploy:
     environment:
       name: github-pages
@@ -63,12 +73,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2
-      - name: build and publish package on NPM 📦
-        run: |
-          git config --global user.email "loise.fenoll@ynov.com"
-          git config --global user.name "Loise Fenoll"
-          npm run build-npm
-          npm version patch
-          npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
