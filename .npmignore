@@ -22,9 +22,6 @@ __mocks__
 build
 dist
 
-# Source files (if publishing only the build output)
-src
-
 # Other files to ignore
 README.md
 *.config.js
