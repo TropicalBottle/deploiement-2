@@ -1,3 +1,4 @@
+import '@testing-library/jest-dom';
 import { areAllFieldsFilled, isValidEmail, isValidFrenchPostalCode, isValidName, validateAge } from './form_checker';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import Form from './Form';
