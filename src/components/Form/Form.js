@@ -33,7 +33,7 @@ export default function Form() {
         if (!isValidName(formData.get('city'))) {
             newErrors["city"] = "Please verify your city";
         }
-        if (validateAge(formData.get('date')) < 18) {
+        if (!validateAge(formData.get('date'))) {
             newErrors["date"] = "Please verify the birthday date";
         }
         if (!isValidFrenchPostalCode(formData.get("postal"))) {
