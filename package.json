@@ -1,6 +1,6 @@
 {
   "name": "ynov-deploiment-alexandre",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "homepage": "https://TropicalBottle.github.io/deploiement-2/",
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
