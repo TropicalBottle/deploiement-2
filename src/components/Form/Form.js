@@ -68,44 +68,44 @@ export default function Form() {
         <div className={"flex w-full m-auto justify-center"}>
             <div className={ "bg-gray-100 w-3/4 px-4 py-2 my-8 rounded-lg text-black" }>
                 <h1 className={ "text-6xl mb-8" }>Register</h1>
-                <form onSubmit={ search }>
+                <form onSubmit={ search } role={'form'}>
                     <div className={ "flex flex-row justify-center" }>
                         <div className={ 'my-4 mr-4 w-full' }>
                             <label className={ 'form_label' } htmlFor={ 'first_name' }>First name:</label>
                             <input className={ 'form_input' } type={ 'text' } name="first_name" placeholder={ 'Max' }
                                    onChange={ manage_button_state } value={ formData.first_name }/>
-                            { errors.first_name && <div className={ 'alert' }>* Please verify your first name</div> }
+                            { errors.first_name && <p data-testid='alert' className={ 'alert' }>* Please verify your first name</p> }
                         </div>
                         <div className={ 'my-4 ml-4 w-full' }>
                             <label className={ 'form_label' } htmlFor={ 'last_name' }>Last name:</label>
                             <input className={ 'form_input' } type={ 'text' } name="last_name" placeholder={ 'Smith' }
                                    onChange={ manage_button_state } value={ formData.last_name }/>
-                            { errors.last_name && <div className={ 'alert' }>* Please verify your last name</div> }
+                            { errors.last_name && <p data-testid='alert' className={ 'alert' }>* Please verify your last name</p> }
                         </div>
                     </div>
                     <div className={ 'my-4 block' }>
                         <label className={ 'form_label' } htmlFor={ 'email' }>Mail:</label>
                         <input className={ 'form_input' } type={ 'email' } name="email" placeholder={ 'mail@mail.com' }
                                onChange={ manage_button_state } value={ formData.email }/>
-                        { errors.email && <div className={ 'alert' }>* Please verify your mail</div> }
+                        { errors.email && <p data-testid='alert' className={ 'alert' }>* Please verify your mail</p> }
                     </div>
                     <div className={ 'my-4' }>
                         <label className={ 'form_label' } htmlFor={ 'date' }>Birthday:</label>
-                        <input className={ 'form_input' } type={ 'date' } name="date" onChange={ manage_button_state }
+                        <input className={ 'form_input' } type={ 'date' } id={'date'} name="date" onChange={ manage_button_state }
                                value={ formData.date }/>
-                        { errors.date && <div className={ 'alert' }>* Please verify your date</div> }
+                        { errors.date && <p data-testid='alert' className={ 'alert' }>* Please verify your date</p> }
                     </div>
                     <div className={ 'my-4' }>
                         <label className={ "form_label" } htmlFor={ "city" }>City:</label>
                         <input className={ "form_input" } type={ "text" } name="city" placeholder={ "Montpellier" }
                                onChange={ manage_button_state } value={ formData.city }/>
-                        { errors.city && <div className={ "alert" }>* Please verify your city</div> }
+                        { errors.city && <p data-testid='alert' className={ "alert" }>* Please verify your city</p> }
                     </div>
                     <div className={ "my-4" }>
                         <label className={ "form_label" } htmlFor={ "postal" }>Postal code:</label>
                         <input className={ "form_input" } type={ "text" } name="postal" placeholder={ "34500" }
                                onChange={ manage_button_state } value={ formData.postal }/>
-                        { errors.postal && <div className={ "alert" }>* Please verify your postal code</div> }
+                        { errors.postal && <p data-testid='alert' className={ "alert" }>* Please verify your postal code</p> }
                     </div>
 
                     <button disabled={ !isButtonAvailable }
