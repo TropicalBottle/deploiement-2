@@ -68,7 +68,7 @@ export default function Form() {
         <div className={"flex w-full m-auto justify-center"}>
             <div className={ "bg-gray-100 w-3/4 px-4 py-2 my-8 rounded-lg text-black" }>
                 <h1 className={ "text-6xl mb-8" }>Register</h1>
-                <form onSubmit={ search }>
+                <form onSubmit={ search } data-testid="registration-form">
                     <div className={ "flex flex-row justify-center" }>
                         <div className={ 'my-4 mr-4 w-full' }>
                             <label className={ 'form_label' } htmlFor={ 'first_name' }>First name:</label>

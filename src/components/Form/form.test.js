@@ -144,7 +144,7 @@ describe('the search function should manage the form submission', () => {
 
     test('shows error messages when invalid inputs are submitted', async () => {
         const submitButton = screen.getByRole('button', { name: 'Register' });
-        const form = screen.getByRole('form');
+        const form = screen.getByTestId('registration-form');
 
         fireEvent.submit(form);
 
@@ -166,7 +166,7 @@ describe('the search function should manage the form submission', () => {
         fireEvent.change(screen.getByPlaceholderText('34500'), { target: { value: '75000' } });
         fireEvent.change(screen.getByLabelText('Birthday:'), { target: { value: '2000-01-01' } });
 
-        const form = screen.getByRole('form');
+        const form = screen.getByTestId('registration-form');
         fireEvent.submit(form);
 
         await waitFor(() => {
